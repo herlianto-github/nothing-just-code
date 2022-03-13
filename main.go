@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"sort"
+	"strconv"
+	"strings"
 )
 
 func staircase(n int) {
@@ -78,6 +80,29 @@ func birthdayCakeCandles(candles []int32) int32 {
 
 }
 
+func timeConversion(s string) string {
+	// Write your code here
+	result := ""
+
+	kode := s[len(s)-2:]
+	waktu := s[:len(s)-2]
+	arr := strings.Split(waktu, ":")
+	jam, _ := strconv.Atoi(arr[0])
+
+	if kode == "PM" && arr[0] != "12" {
+		jam += 12
+	}
+
+	if kode == "AM" && arr[0] == "12" {
+		jam = 0
+	}
+
+	result = fmt.Sprintf("%02v:%v:%v", jam, arr[1], arr[2])
+
+	return result
+
+}
+
 func main() {
 	fmt.Print("\033[H\033[2J")
 	fmt.Println("nothing just code")
@@ -88,4 +113,7 @@ func main() {
 	miniMaxSum([]int32{256741038, 623958417, 467905213, 714532089, 938071625})
 	fmt.Println("=========================================================")
 	fmt.Println(birthdayCakeCandles([]int32{3, 2, 1, 3}))
+	fmt.Println("=========================================================")
+	fmt.Println(timeConversion("07:05:45PM"))
+	fmt.Println(timeConversion("12:40:22AM"))
 }
